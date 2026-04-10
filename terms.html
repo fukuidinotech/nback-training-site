@@ -22,6 +22,12 @@
       <a href="./">Home</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
+      <div class="lang-switch">
+        <select id="langSelect" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="ja">JA</option>
+        </select>
+      </div>
     </nav>
   </div>
 </header>
@@ -31,12 +37,8 @@
     <h1>Terms of Use</h1>
     <div class="meta">Last updated: April 7, 2026 / 最終更新日: 2026年4月7日</div>
 
-    <div class="lang-switch">
-      <a href="#en" class="active">EN</a>
-      <a href="#ja">JA</a>
-    </div>
-
-    <section id="en">
+    <!-- ============ ENGLISH ============ -->
+    <div data-lang="en">
       <h2>Terms of Use for N-Back Training</h2>
       <p>By downloading or using N-Back Training ("the App"), you agree to the following terms.</p>
 
@@ -74,9 +76,10 @@
       <h3>Contact Us</h3>
       <p>If you have any questions about these Terms of Use, please contact us at:<br>
       <strong>Email:</strong> <a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
-    </section>
+    </div>
 
-    <section id="ja">
+    <!-- ============ JAPANESE ============ -->
+    <div data-lang="ja">
       <h2>N-Back Training 利用規約</h2>
       <p>N-Back Training(以下「本アプリ」)をダウンロードまたは使用することにより、以下の利用規約に同意したものとみなされます。</p>
 
@@ -114,7 +117,7 @@
       <h3>お問い合わせ</h3>
       <p>本利用規約に関するご質問は、以下までご連絡ください。<br>
       <strong>メール:</strong> <a href="mailto:fukuidinotech@gmail.com">fukuidinotech@gmail.com</a></p>
-    </section>
+    </div>
   </div>
 </main>
 
@@ -125,9 +128,33 @@
       <a href="terms.html">Terms of Use</a>
       <a href="mailto:fukuidinotech@gmail.com">Contact</a>
     </div>
-    <div>© 2026 Toru Fukui</div>
+    <div>&copy; 2026 Toru Fukui</div>
   </div>
 </footer>
+
+<script>
+  function applyLang(lang) {
+    if (lang !== "en" && lang !== "ja") lang = "en";
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-lang]").forEach(el => {
+      el.classList.toggle("active", el.dataset.lang === lang);
+    });
+    const sel = document.getElementById("langSelect");
+    if (sel) sel.value = lang;
+    try { localStorage.setItem("nback_lang", lang); } catch (_) {}
+  }
+
+  (function init() {
+    const params = new URLSearchParams(location.search);
+    const fromUrl = params.get("lang");
+    let stored = null;
+    try { stored = localStorage.getItem("nback_lang"); } catch (_) {}
+    const browser = (navigator.language || "en").toLowerCase().startsWith("ja") ? "ja" : "en";
+    applyLang(fromUrl || stored || browser);
+    const sel = document.getElementById("langSelect");
+    if (sel) sel.addEventListener("change", e => applyLang(e.target.value));
+  })();
+</script>
 
 </body>
 </html>

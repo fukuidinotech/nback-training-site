@@ -362,28 +362,40 @@ footer a:hover {
   margin-bottom: 4px;
 }
 
+/* Language: data-lang sections */
+[data-lang] { display: none; }
+[data-lang].active { display: block; }
+
 .lang-switch {
   display: inline-flex;
-  gap: 4px;
+  align-items: center;
+}
+
+.lang-switch select {
+  appearance: none;
+  -webkit-appearance: none;
   background: var(--surface);
+  color: var(--text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 600;
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 4px;
-  margin-bottom: 32px;
-  font-size: 12px;
-  font-family: "JetBrains Mono", monospace;
+  padding: 6px 28px 6px 12px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M2 3l3 4 3-4' fill='none' stroke='%2300D4AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
 }
 
-.lang-switch a {
-  padding: 6px 14px;
-  border-radius: 999px;
-  color: var(--text-muted);
-  border: none;
+.lang-switch select:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
-.lang-switch a.active {
-  background: var(--primary-dim);
-  color: var(--primary);
+.lang-switch select option {
+  background: var(--surface);
+  color: var(--text);
 }
 
 @media (max-width: 600px) {
