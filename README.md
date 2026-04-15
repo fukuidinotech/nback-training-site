@@ -4,7 +4,10 @@
 
 <h1 align="center">N-Back Brain Trainer</h1>
 
-<p align="center">認知心理学のN-Backタスクに毎日取り組める、ワーキングメモリ訓練アプリ iOS「N-Back Brain Trainer」の公開 Web サイトです。</p>
+<p align="center">
+  A daily working-memory training iOS app based on the N-Back task used in cognitive psychology research.<br>
+  認知心理学のN-Backタスクに毎日取り組める、ワーキングメモリ訓練 iOS アプリです。
+</p>
 
 <p align="center">
   <a href="https://apps.apple.com/jp/app/n-back-brain-trainer/id6761675343">
