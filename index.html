@@ -39,8 +39,10 @@
     <h1 data-i18n-html="heroTitle">毎日の<span class="accent">N-Back</span>で、<br>ワーキングメモリを鍛える。</h1>
     <p class="lede" data-i18n="heroLede">認知心理学の研究で広く使われるN-Backタスクに、毎日取り組めるシンプルな訓練ツール。脳トレ「ゲーム」ではなく、計測と継続のための「計器」として設計しました。</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#features" data-i18n="ctaFeatures">特徴を見る</a>
-      <a class="btn btn-secondary" href="privacy.html" data-i18n="ctaPrivacy">プライバシー</a>
+      <a class="app-store-badge" href="https://apps.apple.com/app/n-back-brain-trainer/id6761675343" target="_blank" rel="noopener" aria-label="Download on the App Store">
+        <img id="appStoreBadge" src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+      </a>
+      <a class="btn btn-secondary" href="#features" data-i18n="ctaFeatures">特徴を見る</a>
     </div>
   </div>
 </section>
@@ -132,7 +134,6 @@
       heroTitle: "Train your <span class=\"accent\">Working Memory</span><br>with daily N-Back.",
       heroLede: "A simple training tool for daily N-Back tasks, widely used in cognitive psychology research. Designed as a measurement instrument for tracking and consistency — not a brain-training game.",
       ctaFeatures: "See Features",
-      ctaPrivacy: "Privacy",
       featuresTitle: "Features",
       featuresLede: "Stripped of distractions — designed to focus on training and tracking.",
       feat1Title: "Dual N-Back: Position + Audio",
@@ -170,7 +171,6 @@
       heroTitle: "毎日の<span class=\"accent\">N-Back</span>で、<br>ワーキングメモリを鍛える。",
       heroLede: "認知心理学の研究で広く使われるN-Backタスクに、毎日取り組めるシンプルな訓練ツール。脳トレ「ゲーム」ではなく、計測と継続のための「計器」として設計しました。",
       ctaFeatures: "特徴を見る",
-      ctaPrivacy: "プライバシー",
       featuresTitle: "特徴",
       featuresLede: "余計な装飾を削ぎ落とし、訓練と記録だけに集中できる設計。",
       feat1Title: "位置 + 音声のデュアルN-Back",
@@ -218,6 +218,11 @@
     });
     const sel = document.getElementById("langSelect");
     if (sel) sel.value = lang;
+    const badge = document.getElementById("appStoreBadge");
+    if (badge) {
+      const locale = lang === "ja" ? "ja-jp" : "en-us";
+      badge.src = `https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/${locale}?size=250x83`;
+    }
     try { localStorage.setItem("nback_lang", lang); } catch (_) {}
   }
 
