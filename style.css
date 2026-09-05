@@ -423,3 +423,12 @@ footer a:hover {
   .site-header .container { flex-direction: row; }
   .nav { gap: 16px; }
 }
+
+/* 翻訳の位置づけを示す注記（法務ページ） */
+.i18n-note {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  border-left: 3px solid currentColor;
+  padding-left: 0.75em;
+  margin-bottom: 1.5em;
+}
