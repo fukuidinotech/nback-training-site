@@ -27,7 +27,7 @@ html {
 
 /* 本文フォント。CJK は書記体系ごとに字形が違うため言語別に差し替える。
    日本語フォント（Hiragino / Yu Gothic）は漢字を持つので、中国語に日本語字形が
-   当たってしまう（Han Unification）。:lang() は JS が html[lang] を書き換えると追従する。 */
+   当たってしまう（Han Unification）。html[lang] はページごとに固定（tools/i18n.py が書く）。 */
 :root {
   --font-latin: "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue";
   --font-body: var(--font-latin), "Hiragino Sans", "Yu Gothic", sans-serif;
@@ -428,43 +428,63 @@ footer a:hover {
   margin-bottom: 4px;
 }
 
-/* Language: data-lang sections */
-[data-lang] { display: none; }
-[data-lang].active { display: block; }
-
-.lang-switch {
-  display: inline-flex;
-  align-items: center;
+/* 言語切替。JS を使わないので details/summary で開閉する
+   （ページ自体が言語ごとに分かれているため、切替はただのリンク） */
+.langpick {
+  position: relative;
+  font-size: 12px;
 }
 
-.lang-switch select {
-  appearance: none;
-  -webkit-appearance: none;
-  background: var(--surface);
-  color: var(--text);
-  /* 選択肢に 日本語 / 简体中文 / 한국어 が並ぶ。JetBrains Mono は CJK を持たないので
+.langpick > summary {
+  list-style: none;
+  cursor: pointer;
+  /* 日本語 / 简体中文 / 한국어 が入る。JetBrains Mono は CJK を持たないので
      本文フォントまでフォールバックさせる */
   font-family: "JetBrains Mono", ui-monospace, var(--font-body);
-  font-size: 12px;
   font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 6px 28px 6px 12px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M2 3l3 4 3-4' fill='none' stroke='%2300D4AA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
+  padding: 6px 12px;
+  white-space: nowrap;
 }
 
-.lang-switch select:focus {
-  outline: none;
-  border-color: var(--primary);
-}
+.langpick > summary::-webkit-details-marker { display: none; }
+.langpick > summary::after { content: " \25BE"; color: var(--primary); }
+.langpick > summary:hover { color: var(--text); }
+.langpick > summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.langpick[open] > summary { color: var(--text); border-color: var(--primary); }
 
-.lang-switch select option {
+.langpick ul {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 20;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  min-width: 9rem;
   background: var(--surface);
-  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
+
+.langpick li { margin: 0; }
+
+.langpick ul a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  border: none;
+  text-decoration: none;
+}
+
+.langpick ul a:hover { background: var(--surface-hover); color: var(--text); }
+/* 今いる言語は移動先ではないので、リンクらしく見せない */
+.langpick ul a[aria-current="true"] { color: var(--text); font-weight: 600; }
 
 @media (max-width: 600px) {
   .hero { padding: 64px 0 48px; }
