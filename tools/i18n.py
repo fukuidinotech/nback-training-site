@@ -92,6 +92,25 @@ LANGS = {
         "nav": ["Home", "Privacy", "Termini", "Avvertenze"],
         "foot": ["Informativa sulla privacy", "Termini di utilizzo", "Avvertenze legali", "Contatti"],
         "updated": "Ultimo aggiornamento", "date": "{d} {month} {y}",
+    },
+    "ru": {
+        "dir": "ru", "native": "Русский", "pick": "Выберите язык",
+        "nav": ["Главная", "Конфиденциальность", "Условия", "Отказ от ответственности"],
+        "foot": ["Политика конфиденциальности", "Условия использования",
+                 "Отказ от ответственности", "Контакты"],
+        "updated": "Последнее обновление", "date": "{d} {month} {y} г.",
+    },
+    "pl": {
+        "dir": "pl", "native": "Polski", "pick": "Wybierz język",
+        "nav": ["Strona główna", "Prywatność", "Regulamin", "Zastrzeżenia"],
+        "foot": ["Polityka prywatności", "Regulamin", "Zastrzeżenia prawne", "Kontakt"],
+        "updated": "Ostatnia aktualizacja", "date": "{d} {month} {y}",
+    },
+    "nl": {
+        "dir": "nl", "native": "Nederlands", "pick": "Kies een taal",
+        "nav": ["Home", "Privacy", "Voorwaarden", "Disclaimer"],
+        "foot": ["Privacybeleid", "Gebruiksvoorwaarden", "Disclaimer", "Contact"],
+        "updated": "Laatst bijgewerkt", "date": "{d} {month} {y}",
     },}
 
 # 月の名前が要る言語だけ持つ（ja / zh / ko は数字で書く）
@@ -108,6 +127,13 @@ MONTHS = {
            "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
     "it": ["", "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
            "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
+    # ru / pl は「日 + 月」で書くので月名は生格（января / stycznia）
+    "ru": ["", "января", "февраля", "марта", "апреля", "мая", "июня",
+           "июля", "августа", "сентября", "октября", "ноября", "декабря"],
+    "pl": ["", "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
+           "lipca", "sierpnia", "września", "października", "listopada", "grudnia"],
+    "nl": ["", "januari", "februari", "maart", "april", "mei", "juni",
+           "juli", "augustus", "september", "oktober", "november", "december"],
 }
 
 

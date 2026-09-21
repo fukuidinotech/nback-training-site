@@ -21,13 +21,13 @@
 
 ## 構成
 
-**10言語。ja は repo 直下、ほかは同名のサブディレクトリ。**
+**13言語。ja は repo 直下、ほかは同名のサブディレクトリ。**
 公開済みの `…/nback-training-site/` を動かさないため、ja だけディレクトリを持ちません。
 
 ```
 nback-training-site/
 ├── index.html privacy.html terms.html disclaimer.html   ← ja
-├── en/ zh-Hans/ zh-Hant/ ko/ de/ fr/ es/ pt/ it/        ← 各4ページ（同じファイル名）
+├── en/ zh-Hans/ zh-Hant/ ko/ de/ fr/ es/ pt/ it/ ru/ pl/ nl/   ← 各4ページ（同じファイル名）
 ├── style.css  images/                                   ← 全言語で共有（1つだけ置く）
 └── tools/i18n.py                                        ← 共通部分の正本
 ```
@@ -55,7 +55,7 @@ python3 tools/i18n.py --check   # ずれていたら異常終了
 
 手で書くのは `<title>` と `<meta name="description">`、そして本文だけです。
 更新日は `<div class="meta" data-updated="YYYY-MM-DD">` の日付だけ直せば、
-10言語ぶんの書き方（`2026年9月4日` / `September 4, 2026` / `4. September 2026` …）が揃います。
+13言語ぶんの書き方（`2026年9月4日` / `September 4, 2026` / `4. September 2026` …）が揃います。
 
 **言語を足す／減らすときは3か所を同時に直します。**
 `tools/i18n.py` の `LANGS`、アプリの `NBackApp/App/SiteLinks.swift`、
@@ -63,6 +63,6 @@ python3 tools/i18n.py --check   # ずれていたら異常終了
 
 ### 文章の正本は日本語
 
-本文を変えるときは **日本語（repo 直下の4ページ）を直してから、9言語へ反映**します。
+本文を変えるときは **日本語（repo 直下の4ページ）を直してから、12言語へ反映**します。
 法務3ページの翻訳には「本翻訳は参考用であり、相違がある場合は日本語版が優先する」旨の
 注記（`.i18n-note`）を各言語で入れてあります。
