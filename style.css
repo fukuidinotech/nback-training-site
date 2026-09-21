@@ -45,6 +45,12 @@ html:lang(ko) {
   --font-body: var(--font-latin), "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
 }
 
+/* DM Sans はキリル文字を持たない。既定の並びだと Windows で「Yu Gothic（日本語書体）」に
+   落ちるので、CJK を含まない並びを当てる。ラテン部分（N-Back など）は DM Sans のまま。 */
+html:lang(ru) {
+  --font-body: var(--font-latin), "Segoe UI", "Noto Sans", Arial, sans-serif;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
