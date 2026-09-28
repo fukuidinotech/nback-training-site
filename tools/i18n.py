@@ -111,7 +111,27 @@ LANGS = {
         "nav": ["Home", "Privacy", "Voorwaarden", "Disclaimer"],
         "foot": ["Privacybeleid", "Gebruiksvoorwaarden", "Disclaimer", "Contact"],
         "updated": "Laatst bijgewerkt", "date": "{d} {month} {y}",
-    },}
+    },
+    # ar / he は右から左（"rtl": True）。<html dir="rtl"> が付き、左右は style.css の論理プロパティが入れ替える
+    "ar": {
+        "dir": "ar", "native": "العربية", "pick": "اختر اللغة", "rtl": True,
+        "nav": ["الرئيسية", "الخصوصية", "الشروط", "إخلاء المسؤولية"],
+        "foot": ["سياسة الخصوصية", "شروط الاستخدام", "إخلاء المسؤولية", "اتصل بنا"],
+        "updated": "آخر تحديث", "date": "{d} {month} {y}",
+    },
+    "vi": {
+        "dir": "vi", "native": "Tiếng Việt", "pick": "Chọn ngôn ngữ",
+        "nav": ["Trang chủ", "Quyền riêng tư", "Điều khoản", "Miễn trừ trách nhiệm"],
+        "foot": ["Chính sách quyền riêng tư", "Điều khoản sử dụng", "Miễn trừ trách nhiệm", "Liên hệ"],
+        "updated": "Cập nhật lần cuối", "date": "ngày {d} tháng {m} năm {y}",
+    },
+    "he": {
+        "dir": "he", "native": "עברית", "pick": "בחירת שפה", "rtl": True,
+        "nav": ["דף הבית", "פרטיות", "תנאי שימוש", "הסרת אחריות"],
+        "foot": ["מדיניות פרטיות", "תנאי שימוש", "הסרת אחריות", "יצירת קשר"],
+        "updated": "עודכן לאחרונה", "date": "{d} ב{month} {y}",
+    },
+}
 
 # 月の名前が要る言語だけ持つ（ja / zh / ko は数字で書く）
 MONTHS = {
@@ -134,6 +154,8 @@ MONTHS = {
            "lipca", "sierpnia", "września", "października", "listopada", "grudnia"],
     "nl": ["", "januari", "februari", "maart", "april", "mei", "juni",
            "juli", "augustus", "september", "oktober", "november", "december"],
+    "ar": ["", "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+    "he": ["", "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"],
 }
 
 
@@ -255,8 +277,10 @@ def apply(text: str, lang: str, page: str) -> str:
     # 法務ページの更新日
     text = re.sub(r'(<div class="meta" data-updated="(\d{4}-\d{2}-\d{2})">).*?(</div>)',
                   lambda m: f"{m.group(1)}{date_text(lang, m.group(2))}{m.group(3)}", text, flags=re.S)
-    # <html lang> も合わせる
-    text = re.sub(r'<html lang="[^"]*">', f'<html lang="{lang}">', text, count=1)
+    # <html lang> も合わせる。右から左の言語（ar / he）は dir="rtl" も付ける。
+    # 左右は style.css の論理プロパティ（margin-inline-end など）が dir に従って入れ替える
+    direction = ' dir="rtl"' if LANGS[lang].get("rtl") else ""
+    text = re.sub(r'<html lang="[^"]*"(?: dir="[^"]*")?>', f'<html lang="{lang}"{direction}>', text, count=1)
     return text
 
 

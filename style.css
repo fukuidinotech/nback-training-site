@@ -51,6 +51,37 @@ html:lang(ru) {
   --font-body: var(--font-latin), "Segoe UI", "Noto Sans", Arial, sans-serif;
 }
 
+/* アラビア文字・ヘブライ文字は DM Sans に無いので、文字ごとに後ろの書体へ落ちる。
+   CJK の書体を挟むと Windows で数字や記号だけ日本語書体になるので入れない。
+   Apple は -apple-system（SF Arabic / SF Hebrew）が受ける */
+html:lang(ar) {
+  --font-body: var(--font-latin), "Segoe UI", "Noto Sans Arabic", Tahoma, sans-serif;
+}
+
+html:lang(he) {
+  --font-body: var(--font-latin), "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif;
+}
+
+/* アラビア文字は字をつなげて書くので、letter-spacing を当てると字が切れる（ヘブライ文字は切れないが、
+   広げると読みにくい）。JetBrains Mono はどちらの文字も持たないので、等幅で見せている
+   小見出し・更新日・数値も本文の書体に戻す。数字やラテン文字だけの欄（.card .num など）は等幅のまま */
+html:lang(ar) .brand, html:lang(ar) .eyebrow, html:lang(ar) h1, html:lang(ar) h2,
+html:lang(ar) .stat .value-word, html:lang(ar) .stat .label, html:lang(ar) .legal h4,
+html:lang(he) .eyebrow, html:lang(he) .stat .label, html:lang(he) .legal h4 {
+  letter-spacing: normal;
+}
+
+html:lang(ar) .eyebrow, html:lang(ar) .legal .meta, html:lang(ar) .stat .value,
+html:lang(he) .eyebrow, html:lang(he) .legal .meta, html:lang(he) .stat .value {
+  font-family: var(--font-body);
+}
+
+/* DM Sans はベトナム語の声調記号つきの字（ệ / ữ など）を持たない。文字ごとに書体が
+   混ざって読みにくくなるので、本文ごと端末の書体にする */
+html:lang(vi) {
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--bg);
@@ -148,7 +179,7 @@ a:hover {
 /* Hero */
 .hero {
   padding: 96px 0 64px;
-  text-align: left;
+  text-align: start;
   border-bottom: 1px solid var(--border);
 }
 
@@ -333,7 +364,7 @@ h3 {
 .disclaimer {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--warning);
+  border-inline-start: 3px solid var(--warning);
   border-radius: 12px;
   padding: 20px 24px;
   font-size: 14px;
@@ -361,7 +392,7 @@ footer .container {
 footer a {
   color: var(--text-muted);
   border: none;
-  margin-right: 16px;
+  margin-inline-end: 16px;
 }
 
 footer a:hover {
@@ -426,7 +457,7 @@ footer a:hover {
 }
 
 .legal ul {
-  padding-left: 20px;
+  padding-inline-start: 20px;
   margin-bottom: 12px;
 }
 
@@ -464,7 +495,7 @@ footer a:hover {
 
 .langpick ul {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   top: calc(100% + 8px);
   z-index: 20;
   margin: 0;
@@ -503,7 +534,7 @@ footer a:hover {
 .i18n-note {
   font-size: 0.85rem;
   opacity: 0.7;
-  border-left: 3px solid currentColor;
-  padding-left: 0.75em;
+  border-inline-start: 3px solid currentColor;
+  padding-inline-start: 0.75em;
   margin-bottom: 1.5em;
 }
