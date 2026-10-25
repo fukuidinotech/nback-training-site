@@ -25,25 +25,25 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://fukuidinotech.github.io/nback-training-site/"
 
-# ja は repo 直下。公開済みの URL（App Store の marketing_url・アプリ内リンク）を
-# 動かさないため、ja だけサブディレクトリを持たない
+# en は repo 直下、ほかは同名のサブディレクトリ（2026-10-25 に直下を ja から en に替えた）。
+# 旧 en/ は出荷済みアプリとストアが開くので転送ページとして残している（このスクリプトは触らない）
 PAGES = ["index.html", "privacy.html", "terms.html", "disclaimer.html"]
 NAV_PAGES = PAGES
 FOOT_PAGES = ["privacy.html", "terms.html", "disclaimer.html"]
 CONTACT = "fukuidinotech@gmail.com"
 
 LANGS = {
-    "ja": {
-        "dir": "", "native": "日本語", "pick": "言語を選ぶ",
-        "nav": ["ホーム", "プライバシー", "利用規約", "免責事項"],
-        "foot": ["プライバシーポリシー", "利用規約", "免責事項", "お問い合わせ"],
-        "updated": "最終更新日", "date": "{y}年{m}月{d}日",
-    },
     "en": {
-        "dir": "en", "native": "English", "pick": "Choose a language",
+        "dir": "", "native": "English", "pick": "Choose a language",
         "nav": ["Home", "Privacy", "Terms", "Disclaimer"],
         "foot": ["Privacy Policy", "Terms of Use", "Disclaimer", "Contact"],
         "updated": "Last updated", "date": "{month} {d}, {y}",
+    },
+    "ja": {
+        "dir": "ja", "native": "日本語", "pick": "言語を選ぶ",
+        "nav": ["ホーム", "プライバシー", "利用規約", "免責事項"],
+        "foot": ["プライバシーポリシー", "利用規約", "免責事項", "お問い合わせ"],
+        "updated": "最終更新日", "date": "{y}年{m}月{d}日",
     },
     "zh-Hans": {
         "dir": "zh-Hans", "native": "简体中文", "pick": "选择语言",

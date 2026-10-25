@@ -17,9 +17,7 @@
 </p>
 
 <p align="center">
-  <a href="https://fukuidinotech.github.io/nback-training-site/">日本語</a>
-  ·
-  <a href="https://fukuidinotech.github.io/nback-training-site/en/">English</a>
+  <a href="https://fukuidinotech.github.io/nback-training-site/ja/">日本語</a>
   ·
   <a href="https://fukuidinotech.github.io/nback-training-site/zh-Hans/">简体中文</a>
   ·
